@@ -1,0 +1,18 @@
+// Copyright (C) 2024 Mozilla Corporation. All rights reserved.
+// This code is governed by the BSD license found in the LICENSE file.
+
+/*---
+flags:
+- noStrict
+features:
+- Tuple
+description: |
+  pending
+esid: pending
+---*/
+var desc = Object.getOwnPropertyDescriptor(Tuple, "of");
+assert.sameValue(desc.value, Tuple.of);
+assert.sameValue(desc.writable, true);
+assert.sameValue(desc.enumerable, false);
+assert.sameValue(desc.configurable, true);
+
