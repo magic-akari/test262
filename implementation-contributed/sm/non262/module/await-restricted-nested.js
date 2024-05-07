@@ -3,8 +3,8 @@
 
 /*---
 flags:
-- noStrict
 - module
+- noStrict
 features: []
 negative:
   phase: early

@@ -11,8 +11,8 @@ description: |
 info: |
   Iterator Helpers proposal 2.1.5
 features:
-- iterator-helpers
 - Iterator
+- iterator-helpers
 flags:
 - noStrict
 ---*/

@@ -5,8 +5,8 @@
 flags:
 - onlyStrict
 includes:
-- deepEqual.js
 - compareArray.js
+- deepEqual.js
 description: |
   pending
 esid: pending

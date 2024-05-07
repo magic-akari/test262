@@ -10,8 +10,8 @@ description: |
 info: |
   ''
 features:
-- iterator-helpers
 - Iterator
+- iterator-helpers
 flags:
 - noStrict
 ---*/

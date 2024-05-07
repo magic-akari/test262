@@ -5,8 +5,8 @@
 includes:
 - compareArray.js
 flags:
-- noStrict
 - module
+- noStrict
 features: []
 info: |
   needs drainJobQueue

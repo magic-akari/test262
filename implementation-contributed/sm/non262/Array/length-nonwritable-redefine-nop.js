@@ -3,8 +3,8 @@
 
 /*---
 includes:
-- deepEqual.js
 - compareArray.js
+- deepEqual.js
 flags:
 - noStrict
 description: |
