@@ -4,6 +4,7 @@
 /*---
 includes:
 - compareArray.js
+- detachArrayBuffer.js
 flags:
 - noStrict
 description: |
@@ -29,7 +30,7 @@ function throwsTypeError(fn) {
 // this is currently not implemented.
 const ACCESS_ON_DETACHED_ARRAY_BUFFER_THROWS = (() => {
     let ta = new Int32Array(10);
-    detachArrayBuffer(ta.buffer);
+    $DETACHBUFFER(ta.buffer);
     let throws = throwsTypeError(() => ta[0]);
     // Ensure [[Get]] and [[GetOwnProperty]] return consistent results.
     assert.sameValue(throwsTypeError(() => Object.getOwnPropertyDescriptor(ta, 0)), throws);
@@ -53,7 +54,7 @@ for (let len of [0, 1, 10]) {
     assert.compareArray(Object.values(ta), Object.values(array));
     assertSameEntries(Object.entries(ta), Object.entries(array));
 
-    detachArrayBuffer(ta.buffer);
+    $DETACHBUFFER(ta.buffer);
 
     assert.compareArray(maybeThrowOnDetached(() => Object.keys(ta), []), []);
     assert.compareArray(maybeThrowOnDetached(() => Object.values(ta), []), []);

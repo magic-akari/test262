@@ -2,6 +2,8 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 features: []
@@ -121,14 +123,14 @@ function test() {
             const b2 = new ArrayBuffer(size);
             mutator = {
                 get foo() {
-                    detachArrayBuffer(b2);
+                    $DETACHBUFFER(b2);
                 }
             };
 
             assertThrowsInstanceOf(
                 () => serialize([ b2, mutator ], [b2]),
                 TypeError,
-                "detaching (due to detachArrayBuffer) while serializing should throw"
+                "detaching (due to $DETACHBUFFER) while serializing should throw"
             );
         }
     }

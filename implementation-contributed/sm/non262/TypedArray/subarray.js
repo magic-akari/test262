@@ -2,6 +2,8 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 features: []
@@ -9,7 +11,7 @@ description: |
   pending
 esid: pending
 ---*/// Bug 1291003
-if (typeof detachArrayBuffer === "function") {
+if (typeof $DETACHBUFFER === "function") {
     for (let constructor of typedArrayConstructors) {
         const elementSize = constructor.BYTES_PER_ELEMENT;
 
@@ -25,7 +27,7 @@ if (typeof detachArrayBuffer === "function") {
 
         let beginIndex = {
             valueOf() {
-                detachArrayBuffer(buffer);
+                $DETACHBUFFER(buffer);
                 return 0;
             }
         };

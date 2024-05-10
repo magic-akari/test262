@@ -2,6 +2,8 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 features: []
@@ -21,7 +23,7 @@ const intArrayConstructors = [
 function badValue(ta) {
   return {
     valueOf() {
-      detachArrayBuffer(ta.buffer);
+      $DETACHBUFFER(ta.buffer);
       return 0;
     }
   };

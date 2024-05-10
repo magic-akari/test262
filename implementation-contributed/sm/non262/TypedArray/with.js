@@ -2,6 +2,8 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 features: []
@@ -31,7 +33,7 @@ for (let index of indices) {
 
   let value = {
     valueOf() {
-      detachArrayBuffer(ta.buffer);
+      $DETACHBUFFER(ta.buffer);
       return 0;
     }
   };

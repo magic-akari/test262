@@ -2,6 +2,8 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 description: |
@@ -12,7 +14,7 @@ esid: pending
 function DetachArrayBufferValue(buffer, value) {
     return {
         valueOf() {
-            detachArrayBuffer(buffer);
+            $DETACHBUFFER(buffer);
             return value;
         }
     };
@@ -21,7 +23,7 @@ function DetachArrayBufferValue(buffer, value) {
 function DetachTypedArrayValue(ta, value) {
     return {
         valueOf() {
-            detachArrayBuffer(ta.buffer);
+            $DETACHBUFFER(ta.buffer);
             return value;
         }
     };

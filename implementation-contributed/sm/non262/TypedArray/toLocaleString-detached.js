@@ -2,19 +2,21 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 features: []
 description: |
   pending
 esid: pending
----*/if (typeof detachArrayBuffer === "function") {
+---*/if (typeof $DETACHBUFFER === "function") {
     const originalNumberToLocaleString = Number.prototype.toLocaleString;
 
     // Throws if array buffer is detached.
     for (let constructor of typedArrayConstructors) {
         let typedArray = new constructor(42);
-        detachArrayBuffer(typedArray.buffer);
+        $DETACHBUFFER(typedArray.buffer);
         assertThrowsInstanceOf(() => typedArray.toLocaleString(), TypeError);
     }
 
@@ -23,7 +25,7 @@ esid: pending
         Number.prototype.toLocaleString = function() {
             "use strict";
             if (!detached) {
-                detachArrayBuffer(typedArray.buffer);
+                $DETACHBUFFER(typedArray.buffer);
                 detached = true;
             }
             return this;

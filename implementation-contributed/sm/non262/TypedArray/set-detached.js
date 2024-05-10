@@ -2,6 +2,8 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 description: |
@@ -18,12 +20,12 @@ function* createTypedArrays(lengths = [0, 1, 4, 4096]) {
     }
 }
 
-if (typeof detachArrayBuffer === "function") {
+if (typeof $DETACHBUFFER === "function") {
     class ExpectedError extends Error {}
 
     // No detached check on function entry.
     for (let {typedArray, buffer} of createTypedArrays()) {
-        detachArrayBuffer(buffer);
+        $DETACHBUFFER(buffer);
 
         assertThrowsInstanceOf(() => typedArray.set(null, {
             valueOf() {
@@ -41,7 +43,7 @@ if (typeof detachArrayBuffer === "function") {
             for (let {typedArray, buffer} of createTypedArrays()) {
                 assertThrowsInstanceOf(() => typedArray.set(source, {
                     valueOf() {
-                        detachArrayBuffer(buffer);
+                        $DETACHBUFFER(buffer);
                         return offset;
                     }
                 }), error);
@@ -52,7 +54,7 @@ if (typeof detachArrayBuffer === "function") {
     // Tests when called with detached typed array as source.
     for (let {typedArray} of createTypedArrays()) {
         for (let {typedArray: source, buffer: sourceBuffer} of createTypedArrays()) {
-            detachArrayBuffer(sourceBuffer);
+            $DETACHBUFFER(sourceBuffer);
 
             assertThrowsInstanceOf(() => typedArray.set(source, {
                 valueOf() {
@@ -71,7 +73,7 @@ if (typeof detachArrayBuffer === "function") {
             for (let {typedArray: source, buffer: sourceBuffer} of createTypedArrays()) {
                 assertThrowsInstanceOf(() => typedArray.set(source, {
                     valueOf() {
-                        detachArrayBuffer(sourceBuffer);
+                        $DETACHBUFFER(sourceBuffer);
                         return offset;
                     }
                 }), error);
@@ -89,7 +91,7 @@ if (typeof detachArrayBuffer === "function") {
             let source = src(typedArray);
             assertThrowsInstanceOf(() => typedArray.set(source, {
                 valueOf() {
-                    detachArrayBuffer(buffer);
+                    $DETACHBUFFER(buffer);
                     return 0;
                 }
             }), TypeError);
@@ -103,7 +105,7 @@ if (typeof detachArrayBuffer === "function") {
         for (let {typedArray, buffer} of createTypedArrays()) {
             let source = {
                 get length() {
-                    detachArrayBuffer(buffer);
+                    $DETACHBUFFER(buffer);
                     return 0;
                 }
             };
@@ -119,7 +121,7 @@ if (typeof detachArrayBuffer === "function") {
             let source = {
                 length: {
                     valueOf() {
-                        detachArrayBuffer(buffer);
+                        $DETACHBUFFER(buffer);
                         return 0;
                     }
                 }
@@ -134,7 +136,7 @@ if (typeof detachArrayBuffer === "function") {
         let source = {
             length: {
                 valueOf() {
-                    detachArrayBuffer(buffer);
+                    $DETACHBUFFER(buffer);
                     return 1;
                 }
             }
@@ -154,7 +156,7 @@ if (typeof detachArrayBuffer === "function") {
             },
             length: {
                 valueOf() {
-                    detachArrayBuffer(buffer);
+                    $DETACHBUFFER(buffer);
                     return 1;
                 }
             }
@@ -175,7 +177,7 @@ if (typeof detachArrayBuffer === "function") {
             },
             length: {
                 valueOf() {
-                    detachArrayBuffer(buffer);
+                    $DETACHBUFFER(buffer);
                     return 1;
                 }
             }
@@ -189,7 +191,7 @@ if (typeof detachArrayBuffer === "function") {
         let source = Object.defineProperties([], {
             0: {
                 get() {
-                    detachArrayBuffer(buffer);
+                    $DETACHBUFFER(buffer);
                     return 1;
                 }
             }
@@ -208,7 +210,7 @@ if (typeof detachArrayBuffer === "function") {
         let source = Object.defineProperties([], {
             0: {
                 get() {
-                    detachArrayBuffer(buffer);
+                    $DETACHBUFFER(buffer);
                     return 1;
                 }
             },
@@ -233,7 +235,7 @@ if (typeof detachArrayBuffer === "function") {
     for (let {typedArray, buffer} of createTypedArrays()) {
         let source = [{
             valueOf() {
-                detachArrayBuffer(buffer);
+                $DETACHBUFFER(buffer);
                 return 1;
             }
         }];
@@ -250,7 +252,7 @@ if (typeof detachArrayBuffer === "function") {
         let accessed = false;
         let source = [{
             valueOf() {
-                detachArrayBuffer(buffer);
+                $DETACHBUFFER(buffer);
                 return 1;
             }
         }, {

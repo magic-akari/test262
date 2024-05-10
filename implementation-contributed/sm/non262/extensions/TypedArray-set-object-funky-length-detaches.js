@@ -2,6 +2,8 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 description: |
@@ -48,7 +50,7 @@ ctors.forEach(function(TypedArray) {
         9: 0,
         get length()
         {
-          detachArrayBuffer(buf);
+          $DETACHBUFFER(buf);
           return 10;
         }
       };

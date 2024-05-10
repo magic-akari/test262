@@ -2,6 +2,8 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 description: |
@@ -29,10 +31,10 @@ for (let fun of ['getInt8', 'getInt16']) {
     assert.sameValue(view[fun](NaN), 0);
 }
 
-if ('detachArrayBuffer' in this) {
+if ('$DETACHBUFFER' in this) {
     // ToIndex is called before detachment check, so we can tell the difference
     // between a ToIndex failure and a real out of bounds failure.
-    detachArrayBuffer(buffer);
+    $DETACHBUFFER(buffer);
 
     check(view);
 

@@ -2,6 +2,8 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 description: |
@@ -11,7 +13,7 @@ esid: pending
 
 let obj = {
   get length() {
-    detachArrayBuffer(ta.buffer);
+    $DETACHBUFFER(ta.buffer);
     return 1;
   },
   0: {

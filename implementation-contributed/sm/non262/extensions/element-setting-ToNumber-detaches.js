@@ -2,6 +2,8 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 description: |
@@ -34,7 +36,7 @@ print(BUGNUMBER + ": " + summary);
 
 var ab = new ArrayBuffer(64);
 var ta = new Uint32Array(ab);
-ta[4] = { valueOf() { detachArrayBuffer(ab); return 5; } };
+ta[4] = { valueOf() { $DETACHBUFFER(ab); return 5; } };
 
 /******************************************************************************/
 

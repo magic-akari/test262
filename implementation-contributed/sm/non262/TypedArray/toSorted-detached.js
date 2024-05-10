@@ -2,6 +2,8 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 features: []
@@ -11,7 +13,7 @@ esid: pending
 ---*/
 var ta = new Int32Array([3, 2, 1]);
 
-detachArrayBuffer(ta.buffer);
+$DETACHBUFFER(ta.buffer);
 
 assertThrowsInstanceOf(() => ta.toSorted(), TypeError);
 

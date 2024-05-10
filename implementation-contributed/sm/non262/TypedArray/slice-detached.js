@@ -2,6 +2,8 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 description: |
@@ -26,10 +28,10 @@ function* createTypedArrays(lengths = [0, 1, 4, 4096]) {
     }
 }
 
-if (typeof detachArrayBuffer === "function") {
+if (typeof $DETACHBUFFER === "function") {
     // ArrayBuffer is detached when entering slice().
     for (let {typedArray, buffer} of createTypedArrays()) {
-        detachArrayBuffer(buffer());
+        $DETACHBUFFER(buffer());
         assertThrowsInstanceOf(() => {
             typedArray.slice(0);
         }, TypeError, "ArrayBuffer is detached on function entry");
@@ -41,7 +43,7 @@ if (typeof detachArrayBuffer === "function") {
         let start = {
             valueOf() {
                 assert.sameValue(detached, false);
-                detachArrayBuffer(buffer());
+                $DETACHBUFFER(buffer());
                 assert.sameValue(detached, false);
                 detached = true;
                 return 0;
@@ -56,7 +58,7 @@ if (typeof detachArrayBuffer === "function") {
                 typedArray.slice(start);
             }, TypeError, "ArrayBuffer is detached in ToInteger(start)");
         }
-        assert.sameValue(detached, true, "detachArrayBuffer was called");
+        assert.sameValue(detached, true, "$DETACHBUFFER was called");
     }
 
     // ArrayBuffer is detached when computing ToInteger(end).
@@ -65,7 +67,7 @@ if (typeof detachArrayBuffer === "function") {
         let end = {
             valueOf() {
                 assert.sameValue(detached, false);
-                detachArrayBuffer(buffer());
+                $DETACHBUFFER(buffer());
                 assert.sameValue(detached, false);
                 detached = true;
                 return length;
@@ -80,7 +82,7 @@ if (typeof detachArrayBuffer === "function") {
                 typedArray.slice(0, end);
             }, TypeError, "ArrayBuffer is detached in ToInteger(end)");
         }
-        assert.sameValue(detached, true, "detachArrayBuffer was called");
+        assert.sameValue(detached, true, "$DETACHBUFFER was called");
     }
 
     // ArrayBuffer is detached in species constructor.
@@ -89,7 +91,7 @@ if (typeof detachArrayBuffer === "function") {
         typedArray.constructor = {
             [Symbol.species]: function(...args) {
                 assert.sameValue(detached, false);
-                detachArrayBuffer(buffer());
+                $DETACHBUFFER(buffer());
                 assert.sameValue(detached, false);
                 detached = true;
                 return new Int32Array(...args);
@@ -104,7 +106,7 @@ if (typeof detachArrayBuffer === "function") {
                 typedArray.slice(0);
             }, TypeError, "ArrayBuffer is detached in TypedArraySpeciesCreate(...)");
         }
-        assert.sameValue(detached, true, "detachArrayBuffer was called");
+        assert.sameValue(detached, true, "$DETACHBUFFER was called");
     }
 }
 

@@ -2,6 +2,8 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 description: |
@@ -16,12 +18,12 @@ const otherGlobal = newGlobal();
 function* createBuffers(lengths = [0, 8]) {
     for (let length of lengths) {
         let buffer = new ArrayBuffer(length);
-        yield {buffer, detach: () => detachArrayBuffer(buffer)};
+        yield {buffer, detach: () => $DETACHBUFFER(buffer)};
     }
 
     for (let length of lengths) {
         let buffer = new otherGlobal.ArrayBuffer(length);
-        yield {buffer, detach: () => otherGlobal.detachArrayBuffer(buffer)};
+        yield {buffer, detach: () => otherGlobal.$DETACHBUFFER(buffer)};
     }
 }
 

@@ -2,6 +2,8 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 description: |
@@ -38,7 +40,7 @@ var src = [ 10, 20, 30, 40,
             ];
 Object.defineProperty(src, 4, {
   get: function () {
-    detachArrayBuffer(ab);
+    $DETACHBUFFER(ab);
     gc();
     return 200;
   }

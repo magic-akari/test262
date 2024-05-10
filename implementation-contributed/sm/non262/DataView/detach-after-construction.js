@@ -2,6 +2,8 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 description: |
@@ -10,7 +12,7 @@ esid: pending
 ---*/var buf = new ArrayBuffer([1,2]);
 var bufView = new DataView(buf);
 
-detachArrayBuffer(buf);
+$DETACHBUFFER(buf);
 
 assertThrowsInstanceOf(() => bufView.getInt8(0), TypeError);
 

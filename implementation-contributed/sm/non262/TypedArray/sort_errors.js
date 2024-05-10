@@ -2,29 +2,31 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 description: |
   pending
 esid: pending
 ---*/// Ensure that TypedArrays throw when attempting to sort a detached ArrayBuffer
-if (typeof detachArrayBuffer === "function") {
+if (typeof $DETACHBUFFER === "function") {
     assertThrowsInstanceOf(() => {
         let buffer = new ArrayBuffer(32);
         let array  = new Int32Array(buffer);
-        detachArrayBuffer(buffer);
+        $DETACHBUFFER(buffer);
         array.sort();
     }, TypeError);
 }
 
 // Ensure detaching buffer in comparator doesn't throw an error.
-if (typeof detachArrayBuffer === "function") {
+if (typeof $DETACHBUFFER === "function") {
     let detached = false;
     let ta = new Int32Array(3);
     ta.sort(function(a, b) {
         if (!detached) {
             detached = true;
-            detachArrayBuffer(ta.buffer);
+            $DETACHBUFFER(ta.buffer);
         }
         return a - b;
     });
@@ -41,14 +43,14 @@ if (typeof newGlobal === "function") {
 }
 
 // Ensure detaching buffer in comparator doesn't throw an error when the typed array is wrapped.
-if (typeof newGlobal === "function" && typeof detachArrayBuffer === "function") {
+if (typeof newGlobal === "function" && typeof $DETACHBUFFER === "function") {
     let detached = false;
     let ta = new Int32Array(3);
     let otherGlobal = newGlobal();
     otherGlobal.Int32Array.prototype.sort.call(ta, function(a,b) {
         if (!detached) {
             detached = true;
-            detachArrayBuffer(ta.buffer);
+            $DETACHBUFFER(ta.buffer);
         }
         return a - b;
     });

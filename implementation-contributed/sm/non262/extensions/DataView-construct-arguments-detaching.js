@@ -2,6 +2,8 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 description: |
@@ -33,7 +35,7 @@ function testByteOffset()
     {
       valueOf: function()
       {
-        detachArrayBuffer(ab);
+        $DETACHBUFFER(ab);
         gc();
         return 0x800;
       }
@@ -61,7 +63,7 @@ function testByteLength()
     {
       valueOf: function()
       {
-        detachArrayBuffer(ab);
+        $DETACHBUFFER(ab);
         gc();
         return 0x800;
       }

@@ -2,6 +2,8 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 description: |
@@ -13,7 +15,7 @@ esid: pending
   assert.sameValue(actual.done, expected.done);
 }
 
-if (typeof detachArrayBuffer === "function" && typeof newGlobal === "function")
+if (typeof $DETACHBUFFER === "function" && typeof newGlobal === "function")
 {
   var iteratorFunction = Uint8Array.prototype[Symbol.iterator];
 
@@ -57,7 +59,7 @@ if (typeof detachArrayBuffer === "function" && typeof newGlobal === "function")
       checkResult(thisNext.call(iterator), {value: undefined, done: true});
 
       // Test an exhausted iterator.
-      bufferGlobal.detachArrayBuffer(buffer);
+      bufferGlobal.$DETACHBUFFER(buffer);
       checkResult(thisNext.call(iterator), {value: undefined, done: true});
 
       // Test an all-but-exhausted iterator.
@@ -65,14 +67,14 @@ if (typeof detachArrayBuffer === "function" && typeof newGlobal === "function")
       checkResult(thisNext.call(iterator), {value: 1, done: false});
       checkResult(thisNext.call(iterator), {value: 2, done: false});
 
-      bufferGlobal.detachArrayBuffer(buffer);
+      bufferGlobal.$DETACHBUFFER(buffer);
       assertThrowsInstanceOf(() => thisNext.call(iterator), TypeError);
 
       // Test an unexhausted iterator.
       [arr, buffer, iterator] = arrayBufferIterator();
       checkResult(thisNext.call(iterator), {value: 1, done: false});
 
-      bufferGlobal.detachArrayBuffer(buffer);
+      bufferGlobal.$DETACHBUFFER(buffer);
       assertThrowsInstanceOf(() => thisNext.call(iterator), TypeError);
     }
   }

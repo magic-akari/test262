@@ -2,6 +2,8 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 description: |
@@ -21,10 +23,10 @@ esid: pending
     assert.sameValue(receiver[10], 47);
 
     // Detached
-    if (typeof detachArrayBuffer === "function" &&
+    if (typeof $DETACHBUFFER === "function" &&
         !isSharedConstructor(constructor))
     {
-        detachArrayBuffer(ta.buffer)
+        $DETACHBUFFER(ta.buffer)
 
         assert.sameValue(ta[0], undefined);
         assert.sameValue(Reflect.set(ta, 0, 42, receiver), true);

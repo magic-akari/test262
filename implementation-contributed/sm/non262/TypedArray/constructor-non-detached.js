@@ -2,6 +2,8 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 features: []
@@ -10,11 +12,11 @@ description: |
 esid: pending
 ---*/for (var constructor of typedArrayConstructors) {
     var buf = new constructor();
-    detachArrayBuffer(buf.buffer);
+    $DETACHBUFFER(buf.buffer);
     assertThrowsInstanceOf(() => new constructor(buf), TypeError);
 
     var buffer = new ArrayBuffer();
-    detachArrayBuffer(buffer);
+    $DETACHBUFFER(buffer);
     assertThrowsInstanceOf(() => new constructor(buffer), TypeError);
 }
 

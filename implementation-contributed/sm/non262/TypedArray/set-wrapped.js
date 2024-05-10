@@ -4,6 +4,7 @@
 /*---
 includes:
 - compareArray.js
+- detachArrayBuffer.js
 flags:
 - noStrict
 features: []
@@ -37,7 +38,7 @@ if (typeof newGlobal === "function") {
     }
 
     // Detachment checks are also applied correctly for wrapped typed arrays.
-    if (typeof detachArrayBuffer === "function") {
+    if (typeof $DETACHBUFFER === "function") {
         // Create typed array from different global (explicit constructor call).
         for (var TA of typedArrayConstructors) {
             var target = new TA(4);
@@ -45,7 +46,7 @@ if (typeof newGlobal === "function") {
             taintLengthProperty(source);
 
             // Called with wrapped typed array, array buffer already detached.
-            otherGlobal.detachArrayBuffer(source.buffer);
+            otherGlobal.$DETACHBUFFER(source.buffer);
             assertThrowsInstanceOf(() => target.set(source), TypeError);
 
             var source = new otherGlobal[TA.name](1);
@@ -55,7 +56,7 @@ if (typeof newGlobal === "function") {
             // processing offset parameter.
             var offset = {
                 valueOf() {
-                    otherGlobal.detachArrayBuffer(source.buffer);
+                    otherGlobal.$DETACHBUFFER(source.buffer);
                     return 0;
                 }
             };
@@ -70,7 +71,7 @@ if (typeof newGlobal === "function") {
             taintLengthProperty(source);
 
             // Called with wrapped typed array, array buffer already detached.
-            otherGlobal.detachArrayBuffer(source.buffer);
+            otherGlobal.$DETACHBUFFER(source.buffer);
             assertThrowsInstanceOf(() => target.set(source), TypeError);
 
             var source = new TA(new otherGlobal.ArrayBuffer(1 * TA.BYTES_PER_ELEMENT));
@@ -80,7 +81,7 @@ if (typeof newGlobal === "function") {
             // processing offset parameter.
             var offset = {
                 valueOf() {
-                    otherGlobal.detachArrayBuffer(source.buffer);
+                    otherGlobal.$DETACHBUFFER(source.buffer);
                     return 0;
                 }
             };

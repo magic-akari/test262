@@ -2,6 +2,8 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- detachArrayBuffer.js
 flags:
 - noStrict
 description: |
@@ -11,7 +13,7 @@ esid: pending
 // checks for detached buffers.
 
 var ta = new Int32Array(4);
-detachArrayBuffer(ta.buffer);
+$DETACHBUFFER(ta.buffer);
 
 assertThrowsInstanceOf(() => Int32Array.from(ta), TypeError);
 
