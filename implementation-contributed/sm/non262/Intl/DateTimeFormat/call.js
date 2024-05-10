@@ -4,7 +4,6 @@
 /*---
 includes:
 - compareArray.js
-- deepEqual.js
 flags:
 - noStrict
 features:

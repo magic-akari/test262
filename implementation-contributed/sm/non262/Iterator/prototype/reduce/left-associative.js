@@ -2,8 +2,6 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
-includes:
-- compareArray.js
 flags:
 - noStrict
 features:

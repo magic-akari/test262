@@ -4,9 +4,6 @@
 /*---
 flags:
 - onlyStrict
-includes:
-- compareArray.js
-- deepEqual.js
 description: |
   pending
 esid: pending
