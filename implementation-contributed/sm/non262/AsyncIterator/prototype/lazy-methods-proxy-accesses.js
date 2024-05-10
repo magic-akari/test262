@@ -12,6 +12,9 @@ info: |
 features:
 - AsyncIterator
 - iterator-helpers
+includes:
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 ---*/

@@ -4,6 +4,10 @@
 /*---
 includes:
 - compareArray.js
+- non262-Intl-Collator-shell.js
+- non262-Intl-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 features:

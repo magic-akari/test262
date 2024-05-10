@@ -4,6 +4,9 @@
 /*---
 includes:
 - deepEqual.js
+- non262-String-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 description: |

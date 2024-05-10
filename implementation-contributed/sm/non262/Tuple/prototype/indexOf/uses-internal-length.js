@@ -8,6 +8,10 @@
 description: |
   Tuple.prototype.indexOf - 'length' is own data property that overrides an inherited
   data property on an Tuple
+includes:
+- non262-Tuple-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 features:

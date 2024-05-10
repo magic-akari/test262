@@ -8,6 +8,10 @@
 description: |
   Tuple.prototype.indexOf - side effects produced by step 1 are visible when an exception
   occurs
+includes:
+- non262-Tuple-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 features:

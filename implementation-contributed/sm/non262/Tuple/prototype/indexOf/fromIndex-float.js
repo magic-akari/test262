@@ -7,6 +7,10 @@
 /*---
 description: |
   Tuple.prototype.indexOf when fromIndex is floating point number
+includes:
+- non262-Tuple-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 features:

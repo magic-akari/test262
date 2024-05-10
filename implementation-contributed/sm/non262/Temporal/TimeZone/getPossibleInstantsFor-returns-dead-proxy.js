@@ -2,6 +2,11 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- non262-Temporal-TimeZone-shell.js
+- non262-Temporal-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 features:

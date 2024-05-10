@@ -2,6 +2,11 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- non262-Intl-Array-shell.js
+- non262-Intl-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 description: |

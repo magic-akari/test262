@@ -8,6 +8,10 @@ description: |
 info: |
   "22.1.3.11 Array.prototype.includes ( searchElement [ , fromIndex ] )\n\n...\n5. If\
   \ n \u2265 0, then\n  a. Let k be n.\n...\n7. Repeat, while k < len\n..."
+includes:
+- non262-Tuple-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 features:

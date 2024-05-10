@@ -2,6 +2,11 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+includes:
+- non262-literals-numeric-shell.js
+- non262-literals-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 description: |

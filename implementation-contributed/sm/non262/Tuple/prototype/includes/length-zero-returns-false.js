@@ -4,6 +4,10 @@
 /*---
 description: |
   Returns false if length is 0 ...
+includes:
+- non262-Tuple-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 features:

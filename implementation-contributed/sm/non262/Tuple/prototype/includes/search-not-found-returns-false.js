@@ -4,6 +4,10 @@
 /*---
 description: |
   returns false if the element is not found
+includes:
+- non262-Tuple-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 features:

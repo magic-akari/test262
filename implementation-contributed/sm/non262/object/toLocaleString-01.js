@@ -4,6 +4,10 @@
 /*---
 flags:
 - onlyStrict
+includes:
+- non262-object-shell.js
+- non262-shell.js
+- shell.js
 description: |
   pending
 esid: pending

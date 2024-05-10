@@ -4,6 +4,9 @@
 /*---
 includes:
 - detachArrayBuffer.js
+- non262-Atomics-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 features: []

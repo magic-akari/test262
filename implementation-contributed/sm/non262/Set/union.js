@@ -5,6 +5,9 @@
 includes:
 - compareArray.js
 - deepEqual.js
+- non262-Set-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 features: []

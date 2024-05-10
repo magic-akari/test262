@@ -4,6 +4,10 @@
 /*---
 info: |
   22.1.3.11 Tuple.prototype.includes ( searchElement [ , fromIndex ] )
+includes:
+- non262-Tuple-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 features:

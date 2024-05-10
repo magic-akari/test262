@@ -4,6 +4,10 @@
 /*---
 includes:
 - deepEqual.js
+- non262-Intl-Segmenter-shell.js
+- non262-Intl-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 features:

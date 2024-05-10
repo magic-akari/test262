@@ -8,6 +8,10 @@
 description: |
   Tuple.prototype.indexOf - value of 'fromIndex' is an object that has an own valueOf
   method that returns an object and toString method that returns a string
+includes:
+- non262-Tuple-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 features:

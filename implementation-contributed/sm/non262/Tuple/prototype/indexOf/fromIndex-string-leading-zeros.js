@@ -8,6 +8,10 @@
 description: |
   Tuple.prototype.indexOf - value of 'fromIndex' which is a string containing a number
   with leading zeros
+includes:
+- non262-Tuple-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 features:

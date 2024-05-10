@@ -4,6 +4,9 @@
 /*---
 includes:
 - compareArray.js
+- non262-module-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - module
 - noStrict

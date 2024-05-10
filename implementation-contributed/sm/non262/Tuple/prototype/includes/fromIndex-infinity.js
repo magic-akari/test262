@@ -5,6 +5,10 @@
 esid: sec-array.prototype.includes
 description: |
   handle Infinity values for fromIndex
+includes:
+- non262-Tuple-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 features:

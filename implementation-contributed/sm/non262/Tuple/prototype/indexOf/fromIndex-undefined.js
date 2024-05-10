@@ -7,6 +7,10 @@
 /*---
 description: |
   Tuple.prototype.indexOf returns 0 if fromIndex is 'undefined'
+includes:
+- non262-Tuple-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 features:

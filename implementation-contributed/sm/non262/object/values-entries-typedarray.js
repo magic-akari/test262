@@ -5,6 +5,9 @@
 includes:
 - compareArray.js
 - detachArrayBuffer.js
+- non262-object-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 description: |

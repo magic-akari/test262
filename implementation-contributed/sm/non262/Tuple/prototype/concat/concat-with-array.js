@@ -4,6 +4,9 @@
 /*---
 includes:
 - deepEqual.js
+- non262-Tuple-shell.js
+- non262-shell.js
+- shell.js
 flags:
 - noStrict
 features:
