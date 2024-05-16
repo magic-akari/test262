@@ -130,6 +130,19 @@
     };
   }
 
+  if (typeof global.assertThrownErrorContains === 'undefined') {
+    global.assertThrownErrorContains = function assertThrownErrorContains(thunk, substr) {
+        try {
+            thunk();
+        } catch (e) {
+            if (e.message.indexOf(substr) !== -1)
+                return;
+            throw new Error("Expected error containing " + substr + ", got " + e);
+        }
+        throw new Error("Expected error containing " + substr + ", no exception thrown");
+    };
+  }
+
   if (typeof global.assertThrowsInstanceOf === 'undefined') {
     global.assertThrowsInstanceOf = function assertThrowsInstanceOf(f, ctor, msg) {
       var fullmsg;
