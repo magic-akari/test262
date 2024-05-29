@@ -16,13 +16,10 @@ esid: pending
 // ArrayIterator object.
 function TestArrayIteratorPrototypeConfusion() {
     var iter = [][Symbol.iterator]();
-    try {
-        iter.next.call(Object.getPrototypeOf(iter))
-        throw new Error("Call did not throw");
-    } catch (e) {
-        assert.sameValue(e instanceof TypeError, true);
-        assert.sameValue(e.message, "next method called on incompatible Array Iterator");
-    }
+    assertThrowsInstanceOfWithMessage(
+        () => iter.next.call(Object.getPrototypeOf(iter)),
+        TypeError,
+        "next method called on incompatible Array Iterator");
 }
 TestArrayIteratorPrototypeConfusion();
 
@@ -33,9 +30,7 @@ function TestArrayIteratorWrappers() {
     assert.deepEqual(iter.next.call(newGlobal().eval('[5][Symbol.iterator]()')),
 		 { value: 5, done: false })
 }
-if (typeof newGlobal === "function") {
-    TestArrayIteratorWrappers();
-}
+TestArrayIteratorWrappers();
 
 // Tests that calling |next| on an array iterator after iteration has finished
 // doesn't get the array's |length| property.

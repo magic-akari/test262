@@ -163,6 +163,29 @@
     };
   }
 
+  if (typeof global.assertThrowsInstanceOfWithMessage === 'undefined') {
+    global.assertThrowsInstanceOfWithMessage = function assertThrowsInstanceOfWithMessage(f, ctor, substr, msg) {
+      var fullmsg;
+      try {
+        f();
+      } catch (exc) {
+        if (!(exc instanceof ctor))
+          fullmsg = `Assertion failed: expected exception ${ctor.name}, got ${exc}`;
+        else if (e.message.indexOf(substr) === -1)
+          fullmsg = `Assertion failed: expected exception with message containing ${substr}, got " + ${exc}`;
+        else
+          return;
+      }
+
+      if (fullmsg === undefined)
+        fullmsg = `Assertion failed: expected exception ${ctor.name}, no exception thrown`;
+      if (msg !== undefined)
+        fullmsg += " - " + msg;
+
+      throw new Error(fullmsg);
+    };
+  }
+
   global.assertDeepEq = (function(){
     var call = Function.prototype.call,
       Array_isArray = Array.isArray,

@@ -40,10 +40,10 @@ for (let op of ops) {
 
     // Do the operation.
     eval(op[0]);
-    assert.sameValue(obj.prop, op[1]);
+    assert.sameValue(obj.prop, op[1], `value for ${op[0]}`);
 
     // We should always call toString once, for each operation.
     testHits++;
-    assert.sameValue(hits, testHits);
+    assert.sameValue(hits, testHits, `toString calls for ${op[0]}`);
 }
 
