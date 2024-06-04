@@ -31,47 +31,40 @@ assert.sameValue(actual, expect);
 function g() { return 1 }
 function h() { function g() { throw 2; } eval('g()')++; } 
 
-try {
-    h();
-    assert.sameValue(0, -1);
-} catch (e) {
-    assert.sameValue(e, 2);
-}
+assertThrowsValue(h, 2);
 
 var lhs_prefix = ["",        "++", "--", "",   "",   "[",             "[y, "      ];
 var lhs_suffix = [" = 'no'", "",   "",   "++", "--", ", y] = [3, 4]", "] = [5, 6]"];
 
 for (var i = 0; i < lhs_prefix.length; i++) {
-    try {
-        eval(lhs_prefix[i] + "eval('x')" + lhs_suffix[i]);
-        assert.sameValue(i, -2);
-    } catch (e) {
-        if (/\[/.test(lhs_prefix[i])) {
-            assert.sameValue(e.message, "invalid destructuring target");
-        } else {
-            /*
-             * NB: JSOP_SETCALL throws only JSMSG_ASSIGN_TO_CALL, it does not
-             * specialize for ++ and -- as the compiler's error reporting does. See
-             * the next section's forked assert.sameValue code.
-             */
-            assert.sameValue(e.message, "cannot assign to function call");
-        }
+    var expected;
+    if (/\[/.test(lhs_prefix[i])) {
+        expected = "invalid destructuring target";
+    } else {
+        /*
+         * NB: JSOP_SETCALL throws only JSMSG_ASSIGN_TO_CALL, it does not
+         * specialize for ++ and -- as the compiler's error reporting does. See
+         * the next section's forked assert.sameValue code.
+         */
+        expected = "cannot assign to function call";
     }
+    assertThrownErrorContains(
+        () => eval(lhs_prefix[i] + "eval('x')" + lhs_suffix[i]),
+        expected);
 }
 
 /* Now test for strict mode rejecting any SETCALL variant at compile time. */
 for (var i = 0; i < lhs_prefix.length; i++) {
-    try {
-        eval("(function () { 'use strict'; " + lhs_prefix[i] + "foo('x')" + lhs_suffix[i] + "; })");
-        assert.sameValue(i, -3);
-    } catch (e) {
-        if (/\+\+|\-\-/.test(lhs_prefix[i] || lhs_suffix[i]))
-            assert.sameValue(e.message, "invalid increment/decrement operand");
-        else if (/\[/.test(lhs_prefix[i]))
-            assert.sameValue(e.message, "invalid destructuring target");
-        else
-            assert.sameValue(e.message, "invalid assignment left-hand side");
-    }
+    var expected;
+    if (/\+\+|\-\-/.test(lhs_prefix[i] || lhs_suffix[i]))
+        expected = "invalid increment/decrement operand";
+    else if (/\[/.test(lhs_prefix[i]))
+        expected = "invalid destructuring target";
+    else
+        expected = "invalid assignment left-hand side";
+    assertThrownErrorContains(
+        () => eval("(function () { 'use strict'; " + lhs_prefix[i] + "foo('x')" + lhs_suffix[i] + "; })"),
+        expected);
 }
 
 /*
@@ -80,12 +73,9 @@ for (var i = 0; i < lhs_prefix.length; i++) {
  */
 var fooArg;
 function foo(arg) { fooArg = arg; }
-try {
-    eval("delete (foo('x') = 42);");
-    assert.sameValue(0, -4);
-} catch (e) {
-    assert.sameValue(e.message, "cannot assign to function call");
-}
+assertThrownErrorContains(
+    () => eval("delete (foo('x') = 42);"),
+    "cannot assign to function call");
 assert.sameValue(fooArg, 'x');
 
 /* Delete of a call expression is not an error at all, even in strict mode. */

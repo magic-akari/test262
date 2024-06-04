@@ -11,35 +11,23 @@ flags:
 description: |
   pending
 esid: pending
----*/try {
-    eval("for (let case of ['foo', 'bar']) {}")
-}
-catch(e) {
-    assert.sameValue(e instanceof SyntaxError, true)
-    assert.sameValue(e.message, "unexpected token: keyword 'case'");
-}
+---*/assertThrowsInstanceOfWithMessage(
+    () => eval("for (let case of ['foo', 'bar']) {}"),
+    SyntaxError,
+    "unexpected token: keyword 'case'");
 
-try {
-    eval("for (let debugger of ['foo', 'bar']) {}")
-}
-catch(e) {
-    assert.sameValue(e instanceof SyntaxError, true)
-    assert.sameValue(e.message, "unexpected token: keyword 'debugger'");
-}
+assertThrowsInstanceOfWithMessage(
+    () => eval("for (let debugger of ['foo', 'bar']) {}"),
+    SyntaxError,
+    "unexpected token: keyword 'debugger'");
 
-try {
-    eval("for (let case in ['foo', 'bar']) {}")
-}
-catch(e) {
-    assert.sameValue(e instanceof SyntaxError, true)
-    assert.sameValue(e.message, "unexpected token: keyword 'case'");
-}
+assertThrowsInstanceOfWithMessage(
+    () => eval("for (let case in ['foo', 'bar']) {}"),
+    SyntaxError,
+    "unexpected token: keyword 'case'");
 
-try {
-    eval("for (let debugger in ['foo', 'bar']) {}")
-}
-catch(e) {
-    assert.sameValue(e instanceof SyntaxError, true)
-    assert.sameValue(e.message, "unexpected token: keyword 'debugger'");
-}
+assertThrowsInstanceOfWithMessage(
+    () => eval("for (let debugger in ['foo', 'bar']) {}"),
+    SyntaxError,
+    "unexpected token: keyword 'debugger'");
 
