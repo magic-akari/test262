@@ -12,6 +12,7 @@ flags:
 - noStrict
 features:
 - AsyncIterator
+- Iterator
 description: |
   pending
 esid: pending
