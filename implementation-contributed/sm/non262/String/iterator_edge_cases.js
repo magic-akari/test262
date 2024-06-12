@@ -16,13 +16,10 @@ esid: pending
 // StringIterator object.
 function TestStringIteratorPrototypeConfusion() {
     var iter = ""[Symbol.iterator]();
-    try {
-        iter.next.call(Object.getPrototypeOf(iter))
-        throw new Error("Call did not throw");
-    } catch (e) {
-        assert.sameValue(e instanceof TypeError, true);
-        assert.sameValue(e.message, "next method called on incompatible String Iterator");
-    }
+    assertThrowsInstanceOfWithMessage(
+        () => iter.next.call(Object.getPrototypeOf(iter)),
+        TypeError,
+        "next method called on incompatible String Iterator");
 }
 TestStringIteratorPrototypeConfusion();
 

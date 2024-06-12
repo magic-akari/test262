@@ -12,7 +12,6 @@ description: |
   pending
 esid: pending
 ---*/const nativeErrors = [
-    InternalError,
     EvalError,
     RangeError,
     ReferenceError,

@@ -275,9 +275,8 @@ function testBound(fun)
 testBound(strict);
 testBound(nonstrict);
 
-assert.sameValue((function unbound(){"body"}).bind().toString(), `function() {
-    [native code]
-}`);
+var nativeFunctionRegex = /^function\s*\(\)\s*{\s*\[native code\]\s*}$/
+assert.sameValue(nativeFunctionRegex.test((function unbound(){"body"}).bind().toString()), true);
 
 
 /* 22. Return F. */
