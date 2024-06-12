@@ -16,28 +16,18 @@ var summary = "yield outside of generators should provide better error";
 
 print(BUGNUMBER + ": " + summary);
 
-let caught = false;
-try {
-    eval("yield 10");
-} catch(e) {
-    assert.sameValue(e.message, "yield expression is only valid in generators");
-    caught = true;
-}
-assert.sameValue(caught, true);
+assertThrowsInstanceOfWithMessage(
+    () => eval("yield 10"),
+    SyntaxError,
+    "yield expression is only valid in generators");
 
-try {
-    eval("function f() { yield 10; }");
-} catch(e) {
-    assert.sameValue(e.message, "yield expression is only valid in generators");
-    caught = true;
-}
-assert.sameValue(caught, true);
+assertThrowsInstanceOfWithMessage(
+    () => eval("yield 10"),
+    SyntaxError,
+    "yield expression is only valid in generators");
 
-try {
-    eval("async function f() { yield 10; }");
-} catch(e) {
-    assert.sameValue(e.message, "yield expression is only valid in generators");
-    caught = true;
-}
-assert.sameValue(caught, true);
+assertThrowsInstanceOfWithMessage(
+    () => eval("yield 10"),
+    SyntaxError,
+    "yield expression is only valid in generators");
 

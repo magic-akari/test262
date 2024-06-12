@@ -15,14 +15,10 @@ esid: pending
 
 var x;
 function check(code, msg) {
-    var s = "no exception thrown";
-    try {
-        eval(code);
-    } catch (exc) {
-        s = exc.message;
-    }
-
-    assert.sameValue(s, msg);
+    assertThrowsInstanceOfWithMessage(
+        () => eval(code),
+        TypeError,
+        msg);
 }
 
 x = {};

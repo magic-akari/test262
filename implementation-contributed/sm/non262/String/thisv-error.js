@@ -28,18 +28,11 @@ esid: pending
 
   var keys = Object.getOwnPropertyNames(String.prototype);
   for (var key of keys) {
-    var message;
-    try {
-      String.prototype[key].call(thisv);
-    } catch (e) {
-      message = e.message;
-    }
-
-    var expected = `String.prototype.${key} called on incompatible ${thisv}`;
     if (failures.includes(key)) {
-      assert.sameValue(message !== expected, true)
+      assert.throws(TypeError, () => String.prototype[key].call(thisv), key);
     } else {
-      assert.sameValue(message, expected);
+      var expected = `String.prototype.${key} called on incompatible ${thisv}`;
+      assertThrowsInstanceOfWithMessage(() => String.prototype[key].call(thisv), TypeError, expected, key)
     }
   }
 }
@@ -48,14 +41,8 @@ testName(undefined);
 
 // On-off test for Symbol.iterator
 function testIterator(thisv) {
-  var message;
-  try {
-    String.prototype[Symbol.iterator].call(thisv);
-  } catch (e) {
-    message = e.message;
-  }
-
-  assert.sameValue(message, `String.prototype[Symbol.iterator] called on incompatible ${thisv}`);
+  assertThrowsInstanceOfWithMessage(() => String.prototype[Symbol.iterator].call(thisv), TypeError,
+  `String.prototype[Symbol.iterator] called on incompatible ${thisv}`);
 }
 testIterator(null);
 testIterator(undefined);
