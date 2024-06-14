@@ -2,12 +2,13 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+flags:
+- IsHTMLDDA
+- noStrict
 includes:
 - non262-expressions-shell.js
 - non262-shell.js
 - shell.js
-flags:
-- noStrict
 description: |
   pending
 esid: pending

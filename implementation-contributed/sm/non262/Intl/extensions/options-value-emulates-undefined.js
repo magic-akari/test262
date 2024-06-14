@@ -2,13 +2,14 @@
 // This code is governed by the BSD license found in the LICENSE file.
 
 /*---
+flags:
+- IsHTMLDDA
+- noStrict
 includes:
 - non262-Intl-extensions-shell.js
 - non262-Intl-shell.js
 - non262-shell.js
 - shell.js
-flags:
-- noStrict
 features:
 - Intl
 description: |
