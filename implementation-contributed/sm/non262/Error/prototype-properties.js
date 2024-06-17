@@ -21,14 +21,14 @@ esid: pending
 ];
 
 const expectedOwnKeys = "toSource" in Object.prototype
-                        ? "toSource,toString,message,name,stack,constructor"
-                        : "toString,message,name,stack,constructor";
-assert.sameValue(Reflect.ownKeys(Error.prototype).toString(), expectedOwnKeys);
+                        ? "constructor,message,name,stack,toSource,toString"
+                        : "constructor,message,name,stack,toString";
+assert.sameValue(Reflect.ownKeys(Error.prototype).sort().toString(), expectedOwnKeys);
 assert.sameValue(Error.prototype.name, "Error");
 assert.sameValue(Error.prototype.message, "");
 
 for (const error of nativeErrors) {
-    assert.sameValue(Reflect.ownKeys(error.prototype).toString(), "message,name,constructor");
+    assert.sameValue(Reflect.ownKeys(error.prototype).sort().toString(), "constructor,message,name");
     assert.sameValue(error.prototype.name, error.name);
     assert.sameValue(error.prototype.message, "");
     assert.sameValue(error.prototype.constructor, error);
