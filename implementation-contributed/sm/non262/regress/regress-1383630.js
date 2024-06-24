@@ -32,30 +32,7 @@ esid: pending
 "use strict";
 
 function assertThrowsTypeErrorIncludes(f, propStr, details) {
-  var fullmsg;
-  try {
-    f();
-  }
-  catch (exc) {
-    if (!(exc instanceof TypeError))
-      fullmsg =
-        "Assertion failed: expected TypeError, got " + exc;
-    else if (!exc.message.includes(propStr))
-      fullmsg =
-        `Assertion failed: expected TypeError message '${exc.message}' to include '${propStr}'`;
-    else if (details && !exc.message.includes(details))
-      fullmsg =
-        `Assertion failed: expected TypeError message '${exc.message}' to include '${details}'`;
-    else
-      return;
-  }
-
-  if (fullmsg === undefined) {
-    fullmsg =
-      "Assertion failed: expected TypeError, no exception thrown";
-  }
-
-  throw new Error(fullmsg);
+  assertThrowsInstanceOfWithMessage(f, TypeError, details || propStr);
 }
 
 const STR = "one", STR_NAME = `"one"`;
