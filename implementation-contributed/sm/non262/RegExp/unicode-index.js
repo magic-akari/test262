@@ -20,6 +20,7 @@ var r = /\uD83D\uDC38/ug;
 r.lastIndex = 1;
 var str = "\uD83D\uDC38";
 var result = r.exec(str);
+assert.notSameValue(result, null);
 assert.sameValue(result.length, 1);
 assert.sameValue(result[0], "\uD83D\uDC38");
 

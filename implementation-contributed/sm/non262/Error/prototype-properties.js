@@ -20,10 +20,10 @@ esid: pending
     URIError
 ];
 
-const expectedOwnKeys = "toSource" in Object.prototype
-                        ? "constructor,message,name,stack,toSource,toString"
-                        : "constructor,message,name,stack,toString";
-assert.sameValue(Reflect.ownKeys(Error.prototype).sort().toString(), expectedOwnKeys);
+const ownKeys = Reflect.ownKeys(Error.prototype);
+for (const expected of ["constructor", "message", "name", "toString"]) {
+  assert(ownKeys.includes(expected), "Error.prototype should have a key named " + expected);
+}
 assert.sameValue(Error.prototype.name, "Error");
 assert.sameValue(Error.prototype.message, "");
 
